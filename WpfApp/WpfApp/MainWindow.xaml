@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        x:Name="_window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="SearchInputTextBox" Grid.Column="0" Grid.Row="0" Height="32" Width="650" FontSize="24"></TextBox>
+            <Button x:Name="SeachButton" Content="Search" Grid.Column="1" Grid.Row="0" Height="32" Width="100" Click="SeachButton_Click"></Button>
+        </Grid>
+        <Grid x:Name="renderGrid">
+        </Grid>
+    </StackPanel>
+</Window>
