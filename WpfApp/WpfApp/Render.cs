@@ -14,9 +14,13 @@ namespace WpfApp
     class Render
     {
         private Grid grid;
-        public Render(Grid grid)
+        private ScrollViewer view;
+
+        public Render(Grid grid, ScrollViewer view)
         {
+            this.view = view;
             this.grid = grid;
+
         }
         private void RenderLine(LineModel line, int index)
         {
@@ -52,11 +56,11 @@ namespace WpfApp
                     textBlock.FontStyle = FontStyles.Italic;
                     break;
             }
+            
             Grid.SetRow(textBlock, index);
             RowDefinition row = new RowDefinition();
             grid.RowDefinitions.Add(row);
             grid.Children.Add(textBlock);
-            
         }
 
         public void Lines(List<LineModel> lines)
@@ -70,6 +74,7 @@ namespace WpfApp
                     index++;
                 }
             }
+            this.view.Content = this.grid;
         }
     }
 }

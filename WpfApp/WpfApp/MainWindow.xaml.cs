@@ -38,8 +38,10 @@ namespace WpfApp
                 await network.GetUri(SearchInputTextBox.Text.Trim());
                 Parser parser = new Parser();
                 List<LineModel> models = parser.FromFile("site.gemini");
-                Render render = new Render(renderGrid);
+
+                Render render = new Render(renderGrid, scrollView);
                 render.Lines(models);
+
             }
         }
     }

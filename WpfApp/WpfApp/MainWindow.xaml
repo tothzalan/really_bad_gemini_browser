@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800">
     <StackPanel>
         <Grid>
             <Grid.RowDefinitions>
@@ -19,7 +19,9 @@
             <TextBox x:Name="SearchInputTextBox" Grid.Column="0" Grid.Row="0" Height="32" Width="650" FontSize="24"></TextBox>
             <Button x:Name="SeachButton" Content="Search" Grid.Column="1" Grid.Row="0" Height="32" Width="100" Click="SeachButton_Click"></Button>
         </Grid>
-        <Grid x:Name="renderGrid">
-        </Grid>
+        <ScrollViewer Height="400" x:Name="scrollView" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Grid x:Name="renderGrid"></Grid>
+        </ScrollViewer>
+
     </StackPanel>
 </Window>

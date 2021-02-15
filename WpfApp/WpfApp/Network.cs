@@ -18,7 +18,15 @@ namespace WpfApp
         {
             try
             {
-                Process.Start("gemget", $"-o site.gemini {uri}");
+                using (Process process = new Process())
+                {
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.FileName = "gemget";
+                    process.StartInfo.Arguments = $"-o site.gemini {uri}";
+                    process.StartInfo.CreateNoWindow = true;
+                    process.Start();
+                    process.WaitForExit();
+                }
             }
             catch (Exception e)
             {
