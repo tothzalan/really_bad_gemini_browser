@@ -26,6 +26,10 @@ namespace WpfApp
             InitializeComponent();
         }
 
+        void ClearScreen() {
+            renderGrid.Children.RemoveRange(0, renderGrid.Children.Count - 1);
+        }
+
         private async void SeachButton_Click(object sender, RoutedEventArgs e)
         {
             if (SearchInputTextBox.Text.Trim().Length < 3)
@@ -34,6 +38,7 @@ namespace WpfApp
             }
             else
             {
+                ClearScreen();
                 Network network = new Network();
                 await network.GetUri(SearchInputTextBox.Text.Trim());
                 Parser parser = new Parser();
