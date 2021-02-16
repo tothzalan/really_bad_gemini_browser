@@ -15,12 +15,13 @@ namespace WpfApp
     {
         private Grid grid;
         private ScrollViewer view;
+        private TextBox search;
 
-        public Render(Grid grid, ScrollViewer view)
+        public Render(Grid grid, ScrollViewer view, TextBox search)
         {
             this.view = view;
             this.grid = grid;
-
+            this.search = search;
         }
         private void RenderLine(LineModel line, int index)
         {
@@ -37,6 +38,7 @@ namespace WpfApp
                 case TypeOfLine.LINK:
                     textBlock.FontSize = 12;
                     textBlock.Foreground = Brushes.Blue;
+                    textBlock.MouseDown += new MouseButtonEventHandler((s, e) => search.Text = textBlock.Text.Split(' ')[0]);
                     break;
                 case TypeOfLine.H1:
                     textBlock.FontSize = 24;

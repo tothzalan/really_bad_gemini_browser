@@ -44,7 +44,7 @@ namespace WpfApp
                 Parser parser = new Parser();
                 List<LineModel> models = parser.FromFile("site.gemini");
 
-                Render render = new Render(renderGrid, scrollView);
+                Render render = new Render(renderGrid, scrollView, SearchInputTextBox);
                 render.Lines(models);
 
             }
