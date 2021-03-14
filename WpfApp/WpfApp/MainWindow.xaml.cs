@@ -30,7 +30,7 @@ namespace WpfApp
             renderGrid.Children.RemoveRange(0, renderGrid.Children.Count - 1);
         }
 
-        private async void SeachButton_Click(object sender, RoutedEventArgs e)
+        private void SeachButton_Click(object sender, RoutedEventArgs e)
         {
             if (SearchInputTextBox.Text.Trim().Length < 3)
             {
@@ -40,13 +40,14 @@ namespace WpfApp
             {
                 ClearScreen();
                 Network network = new Network();
-                await network.GetUri(SearchInputTextBox.Text.Trim());
-                Parser parser = new Parser();
-                List<LineModel> models = parser.FromFile("site.gemini");
+                if (network.GetUri(SearchInputTextBox.Text.Trim()))
+                {
+                    Parser parser = new Parser();
+                    List<LineModel> models = parser.FromFile("site.gemini");
 
-                Render render = new Render(renderGrid, scrollView, SearchInputTextBox);
-                render.Lines(models);
-
+                    Render render = new Render(renderGrid, scrollView, SearchInputTextBox);
+                    render.Lines(models);
+                }
             }
         }
     }

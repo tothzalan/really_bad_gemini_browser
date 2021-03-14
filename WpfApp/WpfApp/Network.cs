@@ -14,8 +14,29 @@ namespace WpfApp
 {
     class Network
     {
-        public async Task GetUri(string uri)
+        public bool GetUri(string uri)
         {
+            if (uri.Substring(0, 5).ToLower() == "file:" && uri.Length > 6) {
+                string filePath = uri.Substring(5);
+                if (File.Exists(filePath))
+                {
+                    try
+                    {
+                        System.IO.File.Copy(filePath, Path.Combine(Directory.GetCurrentDirectory(), "site.gemini"), true);
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Copy error!");
+                        return false;
+                    }
+
+                }
+                else {
+                    MessageBox.Show("Couldn't find file!");
+                    return false;
+                }
+            }
             try
             {
                 using (Process process = new Process())
@@ -26,25 +47,14 @@ namespace WpfApp
                     process.StartInfo.CreateNoWindow = true;
                     process.Start();
                     process.WaitForExit();
+                    return true;
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+                return false;
             }
-            /*
-            try
-            {
-                HttpClient client = new HttpClient();
-                string responseBody = await client.GetStringAsync(uri);
-                MessageBox.Show(responseBody);
-            }
-            catch (HttpRequestException e)
-            {
-                MessageBox.Show("\nException Caught!");
-                MessageBox.Show("Message :{0} ", e.Message);
-            }
-            */
         }
     }
 }
