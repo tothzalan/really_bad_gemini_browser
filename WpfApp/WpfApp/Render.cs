@@ -38,7 +38,17 @@ namespace WpfApp
                 case TypeOfLine.LINK:
                     textBlock.FontSize = 12;
                     textBlock.Foreground = Brushes.Blue;
-                    textBlock.MouseDown += new MouseButtonEventHandler((s, e) => search.Text = textBlock.Text.Split(' ')[0]);
+                    string baseLink = search.Text;
+                    textBlock.MouseDown += new MouseButtonEventHandler((s, e) => {
+                        if (textBlock.Text[0] == '/')
+                        {
+                            search.Text = baseLink + textBlock.Text.Split(new char[] { ' ', '\t' })[0];
+                        }
+                        else
+                        {
+                            search.Text = textBlock.Text.Split(new char[] { ' ', '\t' })[0];
+                        }
+                    });
                     break;
                 case TypeOfLine.H1:
                     textBlock.FontSize = 24;
