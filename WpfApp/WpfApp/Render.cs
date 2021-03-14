@@ -39,14 +39,28 @@ namespace WpfApp
                     textBlock.FontSize = 12;
                     textBlock.Foreground = Brushes.Blue;
                     string baseLink = search.Text;
-                    textBlock.MouseDown += new MouseButtonEventHandler((s, e) => {
-                        if (textBlock.Text[0] == '/')
+                    string[] data = textBlock.Text.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                    string link = data[0];
+                    textBlock.Text = "";
+                    if (data.Length > 1)
+                        for(int i = 1; i < data.Length; i++)
                         {
-                            search.Text = baseLink + textBlock.Text.Split(new char[] { ' ', '\t' })[0];
+                            textBlock.Text += $"{data[i].Trim()} ";
+                        }
+                    else
+                        textBlock.Text = link;
+                    textBlock.MouseDown += new MouseButtonEventHandler((s, e) => {
+                        if (link[0] == '/')
+                        {
+                            search.Text = baseLink + link;
+                        }
+                        else if (!link.Contains("gemini://")) {
+                            search.Text = baseLink + "/" + link;
                         }
                         else
                         {
-                            search.Text = textBlock.Text.Split(new char[] { ' ', '\t' })[0];
+                            search.Text = link;
+
                         }
                     });
                     break;
