@@ -14,12 +14,11 @@
                 <RowDefinition Height="60"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="449*"></ColumnDefinition>
-                <ColumnDefinition Width="231*"/>
-                <ColumnDefinition Width="114*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="SearchInputTextBox" Grid.Column="0" Grid.Row="0" Height="32" Width="650" FontSize="24" Background="{Binding BackgroundColor}" Grid.ColumnSpan="2" Margin="15,14"></TextBox>
-            <Button x:Name="SeachButton" Content="Search" Grid.Column="2" Grid.Row="0" Height="32" Width="100" Click="SeachButton_Click" Margin="7,14,6.6,14"></Button>
+            <TextBox x:Name="SearchInputTextBox" Grid.Column="0" Grid.Row="0" Height="32" Width="650" FontSize="24" Background="{Binding BackgroundColor}"></TextBox>
+            <Button x:Name="SeachButton" Content="Search" Grid.Column="1" Grid.Row="0" Height="32" Width="100" Click="SeachButton_Click"></Button>
         </Grid>
         <ScrollViewer x:Name="scrollView" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="renderGrid"></Grid>
