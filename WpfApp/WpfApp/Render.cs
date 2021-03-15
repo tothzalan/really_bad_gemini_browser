@@ -16,6 +16,7 @@ namespace WpfApp
         private Grid grid;
         private ScrollViewer view;
         private TextBox search;
+        private ConfigModel config = new ConfigModel("");
 
         public Render(Grid grid, ScrollViewer view, TextBox search)
         {
@@ -27,6 +28,7 @@ namespace WpfApp
         {
             TextBlock textBlock = new TextBlock();
             textBlock.Text = line.Content;
+            textBlock.Foreground = config.ForegroundColor;
 
             switch (line.LineType)
             {
@@ -37,7 +39,7 @@ namespace WpfApp
                     break;
                 case TypeOfLine.LINK:
                     textBlock.FontSize = 12;
-                    textBlock.Foreground = Brushes.Blue;
+                    textBlock.Foreground = config.LinkColor;
                     string baseLink = search.Text;
                     string[] data = textBlock.Text.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
                     string link = data[0];
@@ -60,7 +62,6 @@ namespace WpfApp
                         else
                         {
                             search.Text = link;
-
                         }
                     });
                     break;

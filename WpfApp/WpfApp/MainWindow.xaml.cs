@@ -21,9 +21,15 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Brush BackgroundColor { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            ConfigModel config = new ConfigModel("");
+            Background = config.BackgroundColor;
+            SearchInputTextBox.Foreground = config.ForegroundColor;
+            scrollView.Height = this._window.Height-80;
         }
 
         void ClearScreen() {
@@ -49,6 +55,11 @@ namespace WpfApp
                     render.Lines(models);
                 }
             }
+        }
+
+        private void _window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            scrollView.Height = this._window.Height - 80;
         }
     }
 }
