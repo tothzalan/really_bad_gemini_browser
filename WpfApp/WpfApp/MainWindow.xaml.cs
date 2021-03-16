@@ -26,7 +26,7 @@ namespace WpfApp
         public MainWindow()
         {
             InitializeComponent();
-            ConfigModel config = new ConfigModel("");
+            ConfigModel config = new ConfigModel("config.txt");
             Background = config.BackgroundColor;
             SearchInputTextBox.Foreground = config.ForegroundColor;
             scrollView.Height = this._window.Height-95;

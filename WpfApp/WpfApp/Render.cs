@@ -16,7 +16,7 @@ namespace WpfApp
         private Grid grid;
         private ScrollViewer view;
         private TextBox search;
-        private ConfigModel config = new ConfigModel("");
+        private ConfigModel config = new ConfigModel("config.txt");
 
         public Render(Grid grid, ScrollViewer view, TextBox search)
         {
