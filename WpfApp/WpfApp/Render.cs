@@ -86,8 +86,8 @@ namespace WpfApp
             
             Grid.SetRow(textBlock, index);
             RowDefinition row = new RowDefinition();
-            grid.RowDefinitions.Add(row);
             grid.Children.Add(textBlock);
+            grid.RowDefinitions.Add(row);
         }
 
         public void Lines(List<LineModel> lines)
