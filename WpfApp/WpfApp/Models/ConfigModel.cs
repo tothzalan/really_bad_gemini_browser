@@ -15,6 +15,7 @@ namespace WpfApp.Models
         public Brush LinkColor { get; private set; }
 
         public ConfigModel(string path) {
+            SetDefault();
             if (!File.Exists(path))
             {
                 Console.WriteLine("Config file does not exist!");
@@ -22,14 +23,10 @@ namespace WpfApp.Models
                 SetDefault();
             }
             else {
-                bool configReadIn = ReadInConfig(path);
-                if (!configReadIn)
-                {
-                    SetDefault();
-                }
+               ReadInConfig(path);
             }
         }
-        private bool ReadInConfig(string path) {
+        private void ReadInConfig(string path) {
             StreamReader sr = new StreamReader(path);
             while (!sr.EndOfStream)
             {
@@ -37,37 +34,37 @@ namespace WpfApp.Models
                 BrushConverter bc = new BrushConverter();
                 if (line.Length == 2)
                 {
+                    Brush lineColor;
                     try
                     {
-                        bc.ConvertFrom(line[1]);
+                        lineColor = (Brush)bc.ConvertFrom(line[1]);
                     }
                     catch
                     {
-                        return false;
+                        continue;
                     }
                     switch (line[0])
                     {
                         case "backgroundcolor":
-                            this.BackgroundColor = (Brush)bc.ConvertFrom(line[1]);
+                            this.BackgroundColor = lineColor;
                             break;
                         case "foregroundcolor":
-                            this.ForegroundColor = (Brush)bc.ConvertFrom(line[1]);
+                            this.ForegroundColor = lineColor;
                             break;
                         case "linkcolor":
-                            this.LinkColor = (Brush)bc.ConvertFrom(line[1]);
+                            this.LinkColor = lineColor;
                             break;
                         default:
                             break;
                     }
                 }
             }
-            return true;
         }
         private void SetDefault() {
             BrushConverter bc = new BrushConverter();
-            this.BackgroundColor = (Brush)bc.ConvertFrom("#f39189");
-            this.ForegroundColor = (Brush)bc.ConvertFrom("#046582");
-            this.LinkColor = (Brush)bc.ConvertFrom("#6e7582");
+            this.BackgroundColor = (Brush)bc.ConvertFrom("#FFFFFF");
+            this.ForegroundColor = (Brush)bc.ConvertFrom("#000000");
+            this.LinkColor = (Brush)bc.ConvertFrom("#0000FF");
         }
     }
 }
