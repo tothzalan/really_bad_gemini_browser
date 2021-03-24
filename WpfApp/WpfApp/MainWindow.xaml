@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="6*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="SearchInputTextBox" Grid.Column="0" Grid.Row="0" Height="32" Width="650" FontSize="24" Background="{Binding BackgroundColor}"></TextBox>
+            <TextBox x:Name="SearchInputTextBox" Grid.Column="0" Grid.Row="0" Height="32" Width="650" FontSize="24" Background="{Binding BackgroundColor}" KeyDown="SearchInputTextBox_KeyDown"></TextBox>
             <Button x:Name="SeachButton" Content="Search" Grid.Column="1" Grid.Row="0" Height="32" Width="100" Click="SeachButton_Click"></Button>
         </Grid>
         <ScrollViewer x:Name="scrollView" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">

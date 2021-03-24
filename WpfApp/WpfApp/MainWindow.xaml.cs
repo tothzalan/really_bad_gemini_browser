@@ -22,6 +22,8 @@ namespace WpfApp
     public partial class MainWindow : Window
     {
         public Brush BackgroundColor { get; set; }
+        private Stack<string> UrlHistory = new Stack<string>();
+        private string lastUrl = "";
 
         public MainWindow()
         {
@@ -48,6 +50,12 @@ namespace WpfApp
                 Network network = new Network();
                 if (network.GetUri(SearchInputTextBox.Text.Trim()))
                 {
+                    if (lastUrl != "")
+                    {
+                        UrlHistory.Push(lastUrl);
+                    }
+                    lastUrl = SearchInputTextBox.Text.Trim();
+
                     Parser parser = new Parser();
                     List<LineModel> models = parser.FromFile("site.gemini");
 
@@ -60,6 +68,14 @@ namespace WpfApp
         private void _window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             scrollView.Height = this._window.Height - 95;
+        }
+
+        private void SearchInputTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.RightAlt || e.Key == Key.LeftAlt && UrlHistory.Count > 0)
+            {
+                SearchInputTextBox.Text = UrlHistory.Peek();
+            }
         }
     }
 }
