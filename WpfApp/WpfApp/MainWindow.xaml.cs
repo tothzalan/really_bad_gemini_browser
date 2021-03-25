@@ -22,8 +22,8 @@ namespace WpfApp
     public partial class MainWindow : Window
     {
         public Brush BackgroundColor { get; set; }
-        private Stack<string> UrlHistory = new Stack<string>();
-        private string lastUrl = "";
+        private List<string> UrlHistory = new List<string>();
+        private int UrlPosition = 0;
 
         public MainWindow()
         {
@@ -50,11 +50,11 @@ namespace WpfApp
                 Network network = new Network();
                 if (network.GetUri(SearchInputTextBox.Text.Trim()))
                 {
-                    if (lastUrl != "")
+                    if (SearchInputTextBox.Text.Trim() != "")
                     {
-                        UrlHistory.Push(lastUrl);
+                        UrlHistory.Add(SearchInputTextBox.Text.Trim());
+                        UrlPosition = UrlHistory.Count - 1;
                     }
-                    lastUrl = SearchInputTextBox.Text.Trim();
 
                     Parser parser = new Parser();
                     List<LineModel> models = parser.FromFile("site.gemini");
@@ -70,11 +70,21 @@ namespace WpfApp
             scrollView.Height = this._window.Height - 95;
         }
 
-        private void SearchInputTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (e.Key == Key.RightAlt || e.Key == Key.LeftAlt && UrlHistory.Count > 0)
+            if (UrlHistory.Count > 0 && UrlPosition > 0)
             {
-                SearchInputTextBox.Text = UrlHistory.Peek();
+                UrlPosition--;
+                SearchInputTextBox.Text = UrlHistory[UrlPosition];
+            }
+        }
+
+        private void GoForwardButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (UrlHistory.Count > UrlPosition + 1)
+            {
+                UrlPosition++;
+                SearchInputTextBox.Text = UrlHistory[UrlPosition];
             }
         }
     }
