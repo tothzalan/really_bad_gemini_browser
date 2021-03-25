@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800"
+        Title="" Height="500" Width="800"
         SizeChanged="_window_SizeChanged">
     <StackPanel>
         <Grid Background="{Binding BackgroundColor}">

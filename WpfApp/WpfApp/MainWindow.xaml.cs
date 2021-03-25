@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace WpfApp
             Background = config.BackgroundColor;
             SearchInputTextBox.Foreground = config.ForegroundColor;
             scrollView.Height = this._window.Height-95;
+            Title = "RBGB";
         }
 
         void ClearScreen() {
@@ -54,6 +56,7 @@ namespace WpfApp
                     {
                         UrlHistory.Add(SearchInputTextBox.Text.Trim());
                         UrlPosition = UrlHistory.Count - 1;
+                        Title = $"RBGB - {SearchInputTextBox.Text.Trim()}";
                     }
 
                     Parser parser = new Parser();
