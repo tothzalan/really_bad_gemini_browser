@@ -16,7 +16,7 @@ namespace WpfApp
     {
         public bool GetUri(string uri)
         {
-            if (uri.Substring(0, 5).ToLower() == "file:" && uri.Length > 6) {
+            if (uri.Length > 6 && uri.Substring(0, 5).ToLower() == "file:") {
                 string filePath = uri.Substring(5);
                 if (File.Exists(filePath))
                 {
