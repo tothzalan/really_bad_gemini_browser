@@ -8,7 +8,8 @@
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         Title="" Height="500" Width="800"
-        SizeChanged="_window_SizeChanged">
+        SizeChanged="_window_SizeChanged" KeyDown="_window_KeyDown"
+        >
     <StackPanel>
         <Grid Background="{Binding BackgroundColor}">
             <Grid.RowDefinitions>

@@ -90,5 +90,17 @@ namespace WpfApp
                 SearchInputTextBox.Text = UrlHistory[UrlPosition];
             }
         }
+
+        private void _window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                if (Keyboard.IsKeyDown(Key.H) && Keyboard.IsKeyDown(Key.H))
+                {
+                    Window h = new History(UrlHistory, SearchInputTextBox);
+                    h.Show();
+                }
+            }
+        }
     }
 }

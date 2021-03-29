@@ -58,12 +58,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="History.xaml.cs">
+      <DependentUpon>History.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Models\LineModel.cs" />
     <Compile Include="Models\TypeOfLine.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Render.cs" />
+    <Page Include="History.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
