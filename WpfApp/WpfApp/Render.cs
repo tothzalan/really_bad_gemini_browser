@@ -82,6 +82,10 @@ namespace WpfApp
                     textBlock.FontSize = 12;
                     textBlock.FontStyle = FontStyles.Italic;
                     break;
+                case TypeOfLine.PRE:
+                    textBlock.FontFamily = new FontFamily("Lucida Console");
+                    textBlock.FontSize = 12;
+                    break;
             }
             
             Grid.SetRow(textBlock, index);
@@ -95,11 +99,8 @@ namespace WpfApp
             int index = 0;
             foreach (LineModel line in lines)
             {
-                if (line.LineType != TypeOfLine.PRE)
-                {
-                    RenderLine(line, index);
-                    index++;
-                }
+                RenderLine(line, index);
+                index++;
             }
             this.view.Content = this.grid;
         }

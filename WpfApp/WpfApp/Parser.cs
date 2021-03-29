@@ -40,16 +40,20 @@ namespace WpfApp
                     return new LineModel(TypeOfLine.LINK, line.Substring(2).Trim());
                 }
             }
+            if (line.Trim().Length == 3)
+            {
+                if (line.Substring(0, 3) == "```") //pre
+                {
+                    return new LineModel(TypeOfLine.PRE, line.Substring(3).Trim());
+                }
+            }
             if (line.Trim().Length > 3)
             {
                 if (line.Substring(0, 3) == "###") //h3
                 {
                     return new LineModel(TypeOfLine.H3, line.Substring(3).Trim());
                 }
-                else if (line.Substring(0, 3) == "```") //pre
-                {
-                    return new LineModel(TypeOfLine.PRE, line.Substring(3).Trim());
-                }
+
             }
             return new LineModel(TypeOfLine.LINE, line);
         }
@@ -57,11 +61,22 @@ namespace WpfApp
         {
             StreamReader sr = new StreamReader(fileName);
             List<LineModel> lines = new List<LineModel>();
+            bool isPreLine = false;
             while (!sr.EndOfStream)
             {
                 string line = sr.ReadLine();
-                lines.Add(ParseLine(line));
-                Console.WriteLine(ParseLine(line));
+                LineModel parsedLine = ParseLine(line);
+                if (parsedLine.LineType == TypeOfLine.PRE)
+                {
+                    isPreLine = !isPreLine;
+                    continue;
+                }
+                if (isPreLine)
+                {
+                    lines.Add(new LineModel(TypeOfLine.PRE, line));
+                }
+                else
+                    lines.Add(parsedLine);
             }
             return lines;
         }
