@@ -9,7 +9,7 @@
         ResizeMode="NoResize">
     <Grid>
         <ScrollViewer x:Name="scrollView" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Grid x:Name="renderGrid" VerticalAlignment="Top" HorizontalAlignment="Left"></Grid>
+            <ListBox x:Name="listBox"></ListBox>
         </ScrollViewer>
     </Grid>
 </Window>

@@ -28,12 +28,12 @@ namespace WpfApp
             InitializeComponent();
             ConfigModel config = new ConfigModel("config.txt");
             Background = config.BackgroundColor;
+            listBox.Background = config.BackgroundColor;
             this.history = history;
             this.searchInputTextBox = SearchInputTextBox;
             RenderHistory();
         }
         private void RenderHistory() {
-            int index = 0;
             foreach (string item in this.history)
             {
                 TextBlock textBlock = new TextBlock();
@@ -43,11 +43,7 @@ namespace WpfApp
                     this.searchInputTextBox.Text = textBlock.Text;
                 });
 
-                Grid.SetRow(textBlock, index);
-                RowDefinition row = new RowDefinition();
-                renderGrid.Children.Add(textBlock);
-                renderGrid.RowDefinitions.Add(row);
-                index++;
+                listBox.Items.Add(textBlock);
             }
         }
     }
