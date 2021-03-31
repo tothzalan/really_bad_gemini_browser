@@ -95,10 +95,15 @@ namespace WpfApp
         {
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
-                if (Keyboard.IsKeyDown(Key.H) && Keyboard.IsKeyDown(Key.H))
+                if (Keyboard.IsKeyDown(Key.H))
                 {
                     Window h = new History(UrlHistory, SearchInputTextBox);
                     h.Show();
+                }
+                if (Keyboard.IsKeyDown(Key.N))
+                {
+                    MainWindow newWindow = new MainWindow();
+                    newWindow.Show();
                 }
             }
         }
