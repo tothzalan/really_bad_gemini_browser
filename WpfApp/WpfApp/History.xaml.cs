@@ -20,21 +20,20 @@ namespace WpfApp
     /// </summary>
     public partial class History : Window
     {
-        private List<string> history = new List<string>();
+        private List<string> UrlHistory = HistoryModel.UrlHistory;
         private TextBox searchInputTextBox;
 
-        public History(List<string> history, TextBox SearchInputTextBox)
+        public History(TextBox SearchInputTextBox)
         {
             InitializeComponent();
             ConfigModel config = new ConfigModel("config.txt");
             Background = config.BackgroundColor;
             listBox.Background = config.BackgroundColor;
-            this.history = history;
             this.searchInputTextBox = SearchInputTextBox;
             RenderHistory();
         }
         private void RenderHistory() {
-            foreach (string item in this.history)
+            foreach (string item in this.UrlHistory)
             {
                 TextBlock textBlock = new TextBlock();
                 textBlock.Text = item;

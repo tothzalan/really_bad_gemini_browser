@@ -62,6 +62,7 @@
       <DependentUpon>History.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\ConfigModel.cs" />
+    <Compile Include="Models\HistoryModel.cs" />
     <Compile Include="Models\LineModel.cs" />
     <Compile Include="Models\TypeOfLine.cs" />
     <Compile Include="Network.cs" />

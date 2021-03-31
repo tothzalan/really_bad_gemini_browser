@@ -23,7 +23,7 @@ namespace WpfApp
     public partial class MainWindow : Window
     {
         public Brush BackgroundColor { get; set; }
-        private List<string> UrlHistory = new List<string>();
+        private List<string> UrlHistory = HistoryModel.UrlHistory;
         private int UrlPosition = 0;
 
         public MainWindow()
@@ -97,7 +97,7 @@ namespace WpfApp
             {
                 if (Keyboard.IsKeyDown(Key.H))
                 {
-                    Window h = new History(UrlHistory, SearchInputTextBox);
+                    Window h = new History(SearchInputTextBox);
                     h.Show();
                 }
                 if (Keyboard.IsKeyDown(Key.N))
