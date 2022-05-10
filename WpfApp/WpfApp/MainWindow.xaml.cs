@@ -42,6 +42,17 @@ namespace WpfApp
 
         private void SeachButton_Click(object sender, RoutedEventArgs e)
         {
+            Search();
+        }
+
+        private void SearchInputTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.Enter))
+                Search();
+        }
+
+        private void Search()
+        {
             if (SearchInputTextBox.Text.Trim().Length < 3)
             {
                 MessageBox.Show("Wrong address!", "Please try again");
