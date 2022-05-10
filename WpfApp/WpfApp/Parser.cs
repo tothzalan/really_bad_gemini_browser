@@ -11,49 +11,48 @@ namespace WpfApp
     class Parser
     {
         private LineModel ParseLine(string line) {
-            if (line.Trim().Length == 0)
+            line = line.Trim();
+            if (line.Length == 0)
             {
                 return new LineModel(TypeOfLine.EMPTY, "");
             }
-            if (line.Trim().Length > 1)
+
+            if (line.Trim().Length > 3)
             {
-                if (line.Substring(0, 1) == "#" && line[1] != '#') //h1
+                if (line.Substring(0, 3) == "###")
                 {
-                    return new LineModel(TypeOfLine.H1, line.Substring(1).Trim());
-                }
-                else if (line.Substring(0, 1) == ">") //quote
-                {
-                    return new LineModel(TypeOfLine.QUOTE, line.Substring(1).Trim());
-                }
-                else if (line.Substring(0, 1) == "*") //list
-                {
-                    return new LineModel(TypeOfLine.LIST, line.Substring(1).Trim());
-                }
-            }
-            if (line.Trim().Length > 2) {
-                if (line.Substring(0, 2) == "##" && line[2] != '#') //h2
-                {
-                    return new LineModel(TypeOfLine.H2, line.Substring(2).Trim());
-                }
-                else if (line.Substring(0, 2) == "=>") //link
-                {
-                    return new LineModel(TypeOfLine.LINK, line.Substring(2).Trim());
+                    return new LineModel(TypeOfLine.H3, line.Substring(3).Trim());
                 }
             }
             if (line.Trim().Length == 3)
             {
-                if (line.Substring(0, 3) == "```") //pre
+                if (line.Substring(0, 3) == "```")
                 {
                     return new LineModel(TypeOfLine.PRE, line.Substring(3).Trim());
                 }
             }
-            if (line.Trim().Length > 3)
+            if (line.Length > 2)
             {
-                if (line.Substring(0, 3) == "###") //h3
+                switch (line.Substring(0, 2))
                 {
-                    return new LineModel(TypeOfLine.H3, line.Substring(3).Trim());
+                    case "##":
+                        return new LineModel(TypeOfLine.H2, line.Substring(2).Trim());
+                    case "=>":
+                        return new LineModel(TypeOfLine.LINK, line.Substring(2).Trim());
                 }
+            }
+            if (line.Length > 1)
+            {
+                switch (line.Substring(0, 1))
+                {
+                    case "#":
+                        return new LineModel(TypeOfLine.H1, line.Substring(1).Trim());
+                    case ">":
+                        return new LineModel(TypeOfLine.QUOTE, line.Substring(1).Trim());
+                    case "*":
+                        return new LineModel(TypeOfLine.LIST, line.Substring(1).Trim());
 
+                }
             }
             return new LineModel(TypeOfLine.LINE, line);
         }
