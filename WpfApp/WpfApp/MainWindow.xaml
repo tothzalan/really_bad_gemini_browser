@@ -22,7 +22,7 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <fa:ImageAwesome Icon="ArrowLeft" x:Name="GoBackButton" Grid.Column="0" Grid.Row="0" Height="18" MouseLeftButtonDown="GoBackButton_Click" />
-            <fa:ImageAwesome Icon="ArrowRight" Grid.Column="1" Grid.Row="0" Height="18" MouseLeftButtonDown="GoForwardButton_Click" />
+            <fa:ImageAwesome Icon="ArrowRight" x:Name="GoForwardButton" Grid.Column="1" Grid.Row="0" Height="18" MouseLeftButtonDown="GoForwardButton_Click" />
             <!--
             <Button x:Name="GoBackButton" Grid.Column="0" Grid.Row="0" Height="32" Click="GoBackButton_Click">&lt;-</Button>
             <Button x:Name="GoForwardButton" Grid.Column="1" Grid.Row="0" Height="32" Click="GoForwardButton_Click">-&gt;</Button>
@@ -31,7 +31,7 @@
             <!--
             <Button x:Name="SeachButton" Content="Search" Grid.Column="3" Grid.Row="0" Height="32" Width="100" Click="SeachButton_Click"></Button>
             -->
-            <fa:ImageAwesome Icon="Search" Grid.Column="3" Grid.Row="0" Height="18" MouseLeftButtonDown="SeachButton_Click"/>
+            <fa:ImageAwesome x:Name="SearchButton" Icon="Search" Grid.Column="3" Grid.Row="0" Height="18" MouseLeftButtonDown="SeachButton_Click"/>
         </Grid>
         <ScrollViewer x:Name="scrollView" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="renderGrid"></Grid>

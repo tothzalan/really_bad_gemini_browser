@@ -32,6 +32,9 @@ namespace WpfApp
             ConfigModel config = new ConfigModel("config.txt");
             Background = config.BackgroundColor;
             SearchInputTextBox.Foreground = config.ForegroundColor;
+            GoBackButton.Foreground = config.ForegroundColor;
+            GoForwardButton.Foreground = config.ForegroundColor;
+            SearchButton.Foreground = config.ForegroundColor;
             scrollView.Height = this._window.Height-95;
             Title = "RBGB";
         }

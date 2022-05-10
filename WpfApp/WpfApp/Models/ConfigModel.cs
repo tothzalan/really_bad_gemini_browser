@@ -45,17 +45,17 @@ namespace WpfApp.Models
                     }
                     switch (line[0])
                     {
-                        case "backgroundcolor":
+                        case "background":
                             this.BackgroundColor = lineColor;
                             break;
-                        case "foregroundcolor":
+                        case "foreground":
                             this.ForegroundColor = lineColor;
                             break;
-                        case "linkcolor":
+                        case "link":
                             this.LinkColor = lineColor;
                             break;
                         default:
-                            break;
+                            continue;
                     }
                 }
             }
