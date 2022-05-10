@@ -33,6 +33,12 @@ namespace WpfApp
             RenderHistory();
         }
         private void RenderHistory() {
+            if(UrlHistory.Count == 0)
+            {
+                TextBlock textBlock = new TextBlock();
+                textBlock.Text = "Your history is clear.";
+                listBox.Items.Add(textBlock);
+            }
             foreach (string item in this.UrlHistory)
             {
                 TextBlock textBlock = new TextBlock();
