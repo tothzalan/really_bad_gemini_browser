@@ -21,15 +21,17 @@ namespace WpfApp
     public partial class History : Window
     {
         private List<string> UrlHistory = HistoryModel.UrlHistory;
-        private TextBox searchInputTextBox;
+        private TextBox SearchInputTextBox;
+        private ConfigModel Config;
 
         public History(TextBox SearchInputTextBox)
         {
             InitializeComponent();
-            ConfigModel config = new ConfigModel("config.txt");
-            Background = config.BackgroundColor;
-            listBox.Background = config.BackgroundColor;
-            this.searchInputTextBox = SearchInputTextBox;
+            Config = new ConfigModel("config.txt");
+            Background = Config.BackgroundColor;
+            listBox.Background = Config.BackgroundColor;
+            listBox.Foreground = Config.ForegroundColor;
+            this.SearchInputTextBox = SearchInputTextBox;
             RenderHistory();
         }
         private void RenderHistory() {
@@ -45,7 +47,7 @@ namespace WpfApp
                 textBlock.Text = item;
 
                 textBlock.MouseDown += new MouseButtonEventHandler((s, e) => {
-                    this.searchInputTextBox.Text = textBlock.Text;
+                    this.SearchInputTextBox.Text = textBlock.Text;
                 });
 
                 listBox.Items.Add(textBlock);
